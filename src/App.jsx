@@ -2,6 +2,7 @@ import { useState ,useRef,useEffect} from "react";
 import Movies from "./Movies";
 import "./App.css"
 import { Button } from "react-bootstrap";
+import AddMovie from "./AddMovie";
 const App=()=>{
 
   const [movies,setMovies]=useState([]);
@@ -50,8 +51,8 @@ const App=()=>{
 
   return (
     <>
+   <AddMovie />
     <div className="d-flex justify-content-center flex-row gap-3">
-   
       <Button onClick={cancelHandler}>Cancel Retry</Button>
     </div>
     
