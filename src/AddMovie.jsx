@@ -7,7 +7,7 @@ const AddMovie = () => {
   const [openingText, setOpeningText] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
 
     const newMovieObj = {
@@ -15,8 +15,16 @@ const AddMovie = () => {
       openingText,
       releaseDate,
     };
-
-    console.log(newMovieObj);
+   const response = await fetch(
+  "https://movies-app-66a8a-default-rtdb.firebaseio.com/movies.json",
+  {
+    method: "POST",
+    body: JSON.stringify(newMovieObj),
+    headers: {
+    "Content-Type": "application/json",
+     }
+  }
+);
 
     setTitle("");
     setOpeningText("");

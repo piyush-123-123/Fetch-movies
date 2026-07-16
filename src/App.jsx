@@ -1,4 +1,4 @@
-import { useState ,useRef,useEffect} from "react";
+import { useState ,useRef,useEffect, useCallback} from "react";
 import Movies from "./Movies";
 import "./App.css"
 import { Button } from "react-bootstrap";
@@ -9,7 +9,11 @@ const App=()=>{
   const [loading, setLoading] = useState(false);
   const [error,setError]=useState("");
   const timerRef=useRef(null);
-  async function fetchHandler (){
+
+
+  
+
+  const fetchHandler =useCallback(async ()=>{
 
     try{
       setLoading(true);
@@ -35,18 +39,18 @@ const App=()=>{
       setLoading(false)
        
     }  
-  } 
+  } ,[]
+);
   function cancelHandler(){
       clearTimeout(timerRef.current);
       setError("");
      }
-    useEffect(() => {
+       useEffect(() => {
     fetchHandler();
-
     return () => {
       clearTimeout(timerRef.current);
     };
-  }, []);
+    }, [fetchHandler]);
   
 
   return (
