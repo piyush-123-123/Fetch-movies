@@ -1,30 +1,22 @@
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import React from "react";
-const Movies=({movies})=>{
+const Movies=({movies,onDelete})=>{
 
     return (
      
     <div className="movies">
      {movies.map((movie) => (
-       <Card key={movie.episode_id} className="m-3 bg-primary text-white">
+       <Card key={movie.id} className="m-3 bg-primary text-white">
           <Card.Body className="m-3 bg-primary text-white">
             <Card.Title><strong>{movie.title}</strong></Card.Title>
 
             <Card.Text>
-              {movie.opening_crawl}
+              {movie.openingText}
             </Card.Text>
-
             <Card.Text>
-              Director: {movie.director}
+              Release Date: {movie.releaseDate}
             </Card.Text>
-
-            <Card.Text>
-              Producer: {movie.producer}
-            </Card.Text>
-
-            <Card.Text>
-              Release Date: {movie.release_date}
-            </Card.Text>
+            <Button variant="danger" onClick={() => onDelete(movie.id)}>Delete</Button>
           </Card.Body>
        </Card>
       ))}
