@@ -1,5 +1,9 @@
-.btn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.movies {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.btn {
+  text-align: center;
+  margin: 20px 0;
 }

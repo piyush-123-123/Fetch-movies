@@ -1,6 +1,7 @@
-import { useState ,useRef} from "react";
+import { useState ,useRef,useEffect} from "react";
 import Movies from "./Movies";
 import "./App.css"
+import { Button } from "react-bootstrap";
 const App=()=>{
 
   const [movies,setMovies]=useState([]);
@@ -31,21 +32,27 @@ const App=()=>{
     }
     finally{
       setLoading(false)
-      
-    }
-   
-
+       
+    }  
   } 
   function cancelHandler(){
       clearTimeout(timerRef.current);
       setError("");
      }
+    useEffect(() => {
+    fetchHandler();
+
+    return () => {
+      clearTimeout(timerRef.current);
+    };
+  }, []);
   
 
   return (
     <>
-    <div className="btn"><button onClick={fetchHandler}>Fetch Movies</button>
-    <button onClick={cancelHandler}>Cancel Retry</button>
+    <div className="d-flex justify-content-center flex-row gap-3">
+   
+      <Button onClick={cancelHandler}>Cancel Retry</Button>
     </div>
     
     {loading && <h2>Loading...</h2>}
